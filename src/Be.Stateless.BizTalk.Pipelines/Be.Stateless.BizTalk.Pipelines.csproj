@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>Be.Stateless.BizTalk</RootNamespace>
+    <AssemblyTitle>Be.Stateless.BizTalk.Pipelines</AssemblyTitle>
+    <Description>BizTalk.Factory's pipelines for general purpose BizTalk Server development.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/icraftsoftware/Be.Stateless.BizTalk.Pipelines</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">false</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyTitle)</PackageId>
+    <PackageDescription>$(Description)</PackageDescription>
+    <!--<PackageIconUrl>icon url prop</PackageIconUrl>-->
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+    <!--<PackageReleaseNotes>release notes prop</PackageReleaseNotes>-->
+    <PackageTags>library extension utility</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\$(AssemblyTitle).xml</DocumentationFile>
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20208.37990" />
+    <PackageReference Include="Be.Stateless.BizTalk.Stream" Version="2.0.20208.26023" />
+    <PackageReference Include="Be.Stateless.Xml" Version="2.0.20198.24993" />
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Be.Stateless.BizTalk.Pipeline.Definitions\Be.Stateless.BizTalk.Pipeline.Definitions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Pipeline Include="MicroPipelines\AbsorbingTransmit.btp">
+      <TypeName>AbsorbingTransmit</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\FFReceive.btp">
+      <TypeName>FFReceive</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\FFTransmit.btp">
+      <TypeName>FFTransmit</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\PassThruReceive.btp">
+      <TypeName>PassThruReceive</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\PassThruTransmit.btp">
+      <TypeName>PassThruTransmit</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\XmlReceive.btp">
+      <TypeName>XmlReceive</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+    <Pipeline Include="MicroPipelines\XmlTransmit.btp">
+      <TypeName>XmlTransmit</TypeName>
+      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
+    </Pipeline>
+  </ItemGroup>
+
+</Project>
