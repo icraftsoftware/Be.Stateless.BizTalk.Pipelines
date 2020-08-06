@@ -35,10 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20208.37990" />
-    <PackageReference Include="Be.Stateless.BizTalk.Stream" Version="2.0.20208.26023" />
-    <PackageReference Include="Be.Stateless.Xml" Version="2.0.20198.24993" />
-    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.5">
+    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20218.51227" />
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -58,34 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Pipeline Include="MicroPipelines\AbsorbingTransmit.btp">
-      <TypeName>AbsorbingTransmit</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\FFReceive.btp">
-      <TypeName>FFReceive</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\FFTransmit.btp">
-      <TypeName>FFTransmit</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\PassThruReceive.btp">
-      <TypeName>PassThruReceive</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\PassThruTransmit.btp">
-      <TypeName>PassThruTransmit</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\XmlReceive.btp">
-      <TypeName>XmlReceive</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
-    <Pipeline Include="MicroPipelines\XmlTransmit.btp">
-      <TypeName>XmlTransmit</TypeName>
-      <Namespace>Be.Stateless.BizTalk.MicroPipelines</Namespace>
-    </Pipeline>
+    <Folder Include="MicroPipelines\" />
   </ItemGroup>
 
 </Project>
