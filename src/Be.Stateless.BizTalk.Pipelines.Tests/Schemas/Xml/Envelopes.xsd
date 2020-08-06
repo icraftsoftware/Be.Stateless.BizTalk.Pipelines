@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns:tns="urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07" elementFormDefault="qualified" targetNamespace="urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:appinfo>
+      <b:schemaInfo is_envelope="yes" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" />
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexType name="PartType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="lax" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Part" type="tns:PartType" />
+  <xs:element name="LevelTwo">
+    <xs:annotation>
+      <xs:appinfo>
+        <b:recordInfo body_xpath="/*[local-name()='LevelTwo' and namespace-uri()='urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07']/*[local-name()='Part' and namespace-uri()='urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07']" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Part" type="tns:PartType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LevelOne">
+    <xs:annotation>
+      <xs:appinfo>
+        <b:recordInfo body_xpath="/*[local-name()='LevelOne' and namespace-uri()='urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07']/*[local-name()='LevelTwo' and namespace-uri()='urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07']/*[local-name()='Part' and namespace-uri()='urn:schemas.stateless.be:biztalk:envelope:dummy:2021:07']" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tns:LevelTwo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

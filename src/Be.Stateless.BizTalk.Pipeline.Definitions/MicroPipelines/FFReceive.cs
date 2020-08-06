@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +16,11 @@
 
 #endregion
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Be.Stateless.BizTalk.Component;
 using Be.Stateless.BizTalk.Dsl.Pipeline;
+using Be.Stateless.BizTalk.Schema;
 using Microsoft.BizTalk.Component;
-using Microsoft.BizTalk.Component.Utilities;
 using Microsoft.XLANGs.BaseTypes;
 
 namespace Be.Stateless.BizTalk.MicroPipelines
@@ -33,14 +32,14 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 		public FFReceive()
 		{
 			Description = "Flat-File receive micro-pipeline.";
-			Version = new Version(1, 0);
+			Version = new(1, 0);
 			Stages.Decode
 				.AddComponent(new FailedMessageRoutingEnablerComponent())
 				.AddComponent(new MicroPipelineComponent { Enabled = true });
 			Stages.Disassemble
 				.AddComponent(
 					new FFDasmComp {
-						DocumentSpecName = new SchemaWithNone(typeof(Any).AssemblyQualifiedName),
+						DocumentSpecName = new(SchemaMetadata.For<Any>().DocumentSpec.DocSpecStrongName),
 						ValidateDocumentStructure = true
 					});
 			Stages.Validate
