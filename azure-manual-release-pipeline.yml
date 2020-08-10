@@ -13,4 +13,5 @@ extends:
     ProjectOrSolutionPath: "$(Build.SourcesDirectory)/Be.Stateless.BizTalk.Pipelines.sln"
     Major: 2
     Minor: 0
+    SkipTest: true
     BuildEngine: "msbuild"
