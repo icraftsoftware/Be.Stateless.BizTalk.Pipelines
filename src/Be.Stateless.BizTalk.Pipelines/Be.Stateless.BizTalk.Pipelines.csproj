@@ -11,10 +11,16 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/icraftsoftware/Be.Stateless.BizTalk.Pipelines</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <PropertyGroup>
+    <!-- https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml#system-variables -->
+    <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">true</ContinuousIntegrationBuild>
+    <Deterministic>true</Deterministic>
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">false</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
     <PackageId>$(AssemblyTitle)</PackageId>
     <PackageDescription>$(Description)</PackageDescription>
     <!--<PackageIconUrl>icon url prop</PackageIconUrl>-->
@@ -36,7 +42,7 @@
 
   <ItemGroup>
     <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20218.51227" />
-    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.7">
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
