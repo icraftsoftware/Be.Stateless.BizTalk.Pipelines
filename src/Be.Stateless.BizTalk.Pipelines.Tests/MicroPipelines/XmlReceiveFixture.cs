@@ -23,9 +23,9 @@ using Be.Stateless.BizTalk.Dsl.Pipeline.Interpreters;
 using Be.Stateless.BizTalk.Message.Extensions;
 using Be.Stateless.BizTalk.MicroComponent;
 using Be.Stateless.BizTalk.Schema.Annotation;
-using Be.Stateless.BizTalk.Schemas.Xml;
 using Be.Stateless.IO;
 using FluentAssertions;
+using Microsoft.XLANGs.BaseTypes;
 using Winterdom.BizTalk.PipelineTesting;
 using Xunit;
 
@@ -36,7 +36,7 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 		[Fact]
 		public void ContextPropertyExtractorClearsPromotedProperty()
 		{
-			const string content = "<ns0:Any xmlns:ns0=\"urn:schemas.stateless.be:biztalk:any:2012:12\"><message>content</message></ns0:Any>";
+			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
 				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));
@@ -66,7 +66,7 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 		[Fact]
 		public void ContextPropertyExtractorClearsWrittenProperty()
 		{
-			const string content = "<ns0:Any xmlns:ns0=\"urn:schemas.stateless.be:biztalk:any:2012:12\"><message>content</message></ns0:Any>";
+			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
 				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));
@@ -96,7 +96,7 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 		[Fact]
 		public void ContextPropertyExtractorPromotesConstant()
 		{
-			const string content = "<ns0:Any xmlns:ns0=\"urn:schemas.stateless.be:biztalk:any:2012:12\"><message>content</message></ns0:Any>";
+			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
 				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));

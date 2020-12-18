@@ -15,9 +15,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml#system-variables -->
-    <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">true</ContinuousIntegrationBuild>
-    <Deterministic>true</Deterministic>
     <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">false</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <PackageId>$(AssemblyTitle)</PackageId>
@@ -36,20 +33,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+    <None Include="..\..\.settings\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20225.25392" />
-    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.12">
+    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20338.38346" />
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="1.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.3">
+    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -57,11 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Be.Stateless.BizTalk.Pipeline.Definitions\Be.Stateless.BizTalk.Pipeline.Definitions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MicroPipelines\" />
+    <ProjectReference Include="..\Be.Stateless.BizTalk.Pipeline.Definitions\Be.Stateless.BizTalk.Pipeline.Definitions.csproj" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
