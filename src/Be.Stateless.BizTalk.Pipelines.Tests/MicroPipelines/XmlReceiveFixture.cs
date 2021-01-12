@@ -18,7 +18,7 @@
 
 using System.IO;
 using Be.Stateless.BizTalk.Component;
-using Be.Stateless.BizTalk.ContextProperties;
+using Be.Stateless.BizTalk.ContextProperties.Subscribable;
 using Be.Stateless.BizTalk.Dsl.Pipeline.Interpreters;
 using Be.Stateless.BizTalk.Message.Extensions;
 using Be.Stateless.BizTalk.MicroComponent;
