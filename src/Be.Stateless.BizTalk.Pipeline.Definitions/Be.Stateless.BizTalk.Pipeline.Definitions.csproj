@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Be.Stateless.BizTalk.Dsl.Pipeline" Version="2.0.21012.60359" />
-    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.21012.20459" />
+    <PackageReference Include="Be.Stateless.BizTalk.Dsl.Pipeline" Version="2.0.21073.29726" />
+    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.21073.35253" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
