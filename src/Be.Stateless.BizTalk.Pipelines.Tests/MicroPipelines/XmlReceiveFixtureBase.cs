@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 using System.IO;
 using Be.Stateless.BizTalk.Component;
 using Be.Stateless.BizTalk.ContextProperties.Subscribable;
-using Be.Stateless.BizTalk.Dsl.Pipeline.Interpreters;
 using Be.Stateless.BizTalk.Message.Extensions;
 using Be.Stateless.BizTalk.MicroComponent;
 using Be.Stateless.BizTalk.Schema.Annotation;
@@ -27,19 +26,16 @@ using Be.Stateless.IO;
 using FluentAssertions;
 using Microsoft.XLANGs.BaseTypes;
 using Winterdom.BizTalk.PipelineTesting;
-using Xunit;
 
 namespace Be.Stateless.BizTalk.MicroPipelines
 {
-	public class XmlReceiveFixture
+	public abstract class XmlReceiveFixtureBase
 	{
-		[Fact]
-		public void ContextPropertyExtractorClearsPromotedProperty()
+		protected void ContextPropertyExtractorClearsPromotedProperty(ReceivePipelineWrapper pipeline)
 		{
 			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
-				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));
 				pipeline.AddDocSpec(typeof(Any));
 				var microPipeline = (MicroPipelineComponent) pipeline.GetComponent(PipelineStage.Decode, 1);
 				microPipeline.Components = new[] {
@@ -63,13 +59,11 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 			}
 		}
 
-		[Fact]
-		public void ContextPropertyExtractorClearsWrittenProperty()
+		public void ContextPropertyExtractorClearsWrittenProperty(ReceivePipelineWrapper pipeline)
 		{
 			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
-				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));
 				pipeline.AddDocSpec(typeof(Any));
 				var microPipeline = (MicroPipelineComponent) pipeline.GetComponent(PipelineStage.Decode, 1);
 				microPipeline.Components = new[] {
@@ -93,13 +87,11 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 			}
 		}
 
-		[Fact]
-		public void ContextPropertyExtractorPromotesConstant()
+		public void ContextPropertyExtractorPromotesConstant(ReceivePipelineWrapper pipeline)
 		{
 			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
 			{
-				var pipeline = PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>));
 				pipeline.AddDocSpec(typeof(Any));
 				var microPipeline = (MicroPipelineComponent) pipeline.GetComponent(PipelineStage.Decode, 1);
 				microPipeline.Components = new[] {
