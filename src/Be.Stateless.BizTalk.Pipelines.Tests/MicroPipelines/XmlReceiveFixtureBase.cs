@@ -59,7 +59,7 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 			}
 		}
 
-		public void ContextPropertyExtractorClearsWrittenProperty(ReceivePipelineWrapper pipeline)
+		protected void ContextPropertyExtractorClearsWrittenProperty(ReceivePipelineWrapper pipeline)
 		{
 			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))
@@ -87,7 +87,7 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 			}
 		}
 
-		public void ContextPropertyExtractorPromotesConstant(ReceivePipelineWrapper pipeline)
+		protected void ContextPropertyExtractorPromotesConstant(ReceivePipelineWrapper pipeline)
 		{
 			const string content = "<ns0:Root xmlns:ns0=\"http://schemas.microsoft.com/BizTalk/2003/Any\"><message>content</message></ns0:Root>";
 			using (var stream = new StringStream(content))

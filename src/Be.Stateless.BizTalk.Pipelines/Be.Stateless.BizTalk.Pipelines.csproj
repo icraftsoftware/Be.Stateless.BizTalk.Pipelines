@@ -38,11 +38,11 @@
 
   <ItemGroup>
     <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.21104.48675" />
-    <PackageReference Include="BizTalk.Server.2020.Build" Version="2.0.21105.31279">
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="2.0.21154.30794">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.0">
+    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

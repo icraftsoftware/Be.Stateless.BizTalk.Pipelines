@@ -17,7 +17,7 @@
 #endregion
 
 extern alias Interpreted;
-using Be.Stateless.BizTalk.Dsl.Pipeline.Interpreters;
+using Be.Stateless.BizTalk.Unit.Dsl.Pipeline.Interpreters;
 using Winterdom.BizTalk.PipelineTesting;
 using Xunit;
 using XmlReceive = Interpreted::Be.Stateless.BizTalk.MicroPipelines.XmlReceive;
