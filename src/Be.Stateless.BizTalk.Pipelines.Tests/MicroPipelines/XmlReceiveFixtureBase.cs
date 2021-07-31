@@ -22,10 +22,13 @@ using Be.Stateless.BizTalk.ContextProperties.Subscribable;
 using Be.Stateless.BizTalk.Message.Extensions;
 using Be.Stateless.BizTalk.MicroComponent;
 using Be.Stateless.BizTalk.Schema.Annotation;
+using Be.Stateless.BizTalk.Schemas.Xml;
 using Be.Stateless.IO;
 using FluentAssertions;
-using Microsoft.XLANGs.BaseTypes;
+using Microsoft.BizTalk.Component;
 using Winterdom.BizTalk.PipelineTesting;
+using static FluentAssertions.FluentActions;
+using Any = Microsoft.XLANGs.BaseTypes.Any;
 
 namespace Be.Stateless.BizTalk.MicroPipelines
 {
@@ -117,6 +120,43 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 				}
 				outputMessages[0].GetProperty(BizTalkFactoryProperties.EnvironmentTag).Should().Be("tag");
 				outputMessages[0].IsPromoted(BizTalkFactoryProperties.EnvironmentTag).Should().BeTrue();
+			}
+		}
+
+		protected void XmlDisassemblerThrowsOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(ReceivePipelineWrapper pipeline, string payload)
+		{
+			// see https://stackoverflow.com/questions/22766952/biztalk-envelope-schema-self-closing-node
+			Invoking(() => Disassemble(pipeline, payload)).Should().Throw<XmlDasmException>();
+		}
+
+		protected void XmlDisassemblerDoesNotThrowAnymoreOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(ReceivePipelineWrapper pipeline, string payload)
+		{
+			using (var stream = new StringStream(payload))
+			{
+				pipeline.AddDocSpec(typeof(Envelope));
+				pipeline.AddDocSpec(typeof(Envelopes));
+				var microPipeline = (MicroPipelineComponent) pipeline.GetComponent(PipelineStage.Decode, 1);
+				microPipeline.Components = new[] { new XmlEnvelopeDecoder() };
+
+				var inputMessage = MessageHelper.CreateFromStream(stream);
+				pipeline.Execute(inputMessage).Should().BeEmpty();
+			}
+		}
+
+		protected void XmlDisassemblerSucceedsOnExplicitlyClosedEmptyEnvelope(ReceivePipelineWrapper pipeline, string payload)
+		{
+			// see https://stackoverflow.com/a/36585978
+			Disassemble(pipeline, payload).Should().BeEmpty();
+		}
+
+		private MessageCollection Disassemble(ReceivePipelineWrapper pipeline, string payload)
+		{
+			using (var stream = new StringStream(payload))
+			{
+				pipeline.AddDocSpec(typeof(Envelope));
+				pipeline.AddDocSpec(typeof(Envelopes));
+				var inputMessage = MessageHelper.CreateFromStream(stream);
+				return pipeline.Execute(inputMessage);
 			}
 		}
 	}

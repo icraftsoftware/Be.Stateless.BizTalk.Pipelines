@@ -8,13 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Schemas\Xml\Envelopes.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Schemas\Xml\Envelopes.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\.settings\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Be.Stateless.BizTalk.Dsl.Pipeline.Unit" Version="2.0.21173.35392" />
-    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.MicroComponents" Version="2.0.21172.20897" />
-    <PackageReference Include="Be.Stateless.BizTalk.Schemas" Version="2.0.21173.39237" />
+    <PackageReference Include="Be.Stateless.BizTalk.Dsl.Pipeline.Unit" Version="2.0.21285.44011" />
+    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.MicroComponents" Version="2.0.21285.41095" />
+    <PackageReference Include="Be.Stateless.BizTalk.Schemas" Version="2.0.21285.45764" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,12 +31,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+    <PackageReference Include="coverlet.msbuild" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="Winterdom.BizTalk.PipelineTesting" Version="1.2.2" />
     <PackageReference Include="xunit.core" Version="2.4.1" />

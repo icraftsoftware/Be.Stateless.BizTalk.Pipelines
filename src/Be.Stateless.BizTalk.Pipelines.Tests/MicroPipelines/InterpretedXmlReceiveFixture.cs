@@ -17,6 +17,7 @@
 #endregion
 
 extern alias Interpreted;
+using Be.Stateless.BizTalk.Data;
 using Be.Stateless.BizTalk.Unit.Dsl.Pipeline.Interpreters;
 using Winterdom.BizTalk.PipelineTesting;
 using Xunit;
@@ -42,6 +43,29 @@ namespace Be.Stateless.BizTalk.MicroPipelines
 		public void ContextPropertyExtractorPromotesConstant()
 		{
 			ContextPropertyExtractorPromotesConstant(PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>)));
+		}
+
+		[Theory]
+		[MemberData(nameof(EnvelopeGenerator.InvalidEnvelopes), MemberType = typeof(EnvelopeGenerator))]
+		public void XmlDisassemblerDoesNotThrowAnymoreOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(string payload)
+		{
+			XmlDisassemblerDoesNotThrowAnymoreOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(
+				PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>)),
+				payload);
+		}
+
+		[Theory]
+		[MemberData(nameof(EnvelopeGenerator.ValidEnvelopes), MemberType = typeof(EnvelopeGenerator))]
+		public void XmlDisassemblerSucceedsOnExplicitlyClosedEmptyEnvelope(string payload)
+		{
+			XmlDisassemblerSucceedsOnExplicitlyClosedEmptyEnvelope(PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>)), payload);
+		}
+
+		[Theory]
+		[MemberData(nameof(EnvelopeGenerator.InvalidEnvelopes), MemberType = typeof(EnvelopeGenerator))]
+		public void XmlDisassemblerThrowsOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(string payload)
+		{
+			XmlDisassemblerThrowsOnSelfClosedEmptyEnvelopeOrPartialBodyXPath(PipelineFactory.CreateReceivePipeline(typeof(ReceivePipelineInterpreter<XmlReceive>)), payload);
 		}
 	}
 }
