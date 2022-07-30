@@ -14,5 +14,5 @@ extends:
   parameters:
     Major: 2
     Minor: 1
-    SkipTest: true
-    BuildEngine: "msbuild"
+    Toolset: msbuild
+    SkipTests: true

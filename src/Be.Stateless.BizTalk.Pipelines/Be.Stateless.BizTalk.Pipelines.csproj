@@ -19,29 +19,25 @@
     <IsPackable>true</IsPackable>
     <PackageId>$(AssemblyName)</PackageId>
     <PackageDescription>$(Description)</PackageDescription>
-    <!--<PackageIconUrl>icon url prop</PackageIconUrl>-->
+    <PackageIconUrl>https://github.com/icraftsoftware/Be.Stateless.Build.Scripts/raw/master/nuget.png</PackageIconUrl>
+    <PackageIcon>nuget.png</PackageIcon>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
-    <!--<PackageReleaseNotes>release notes prop</PackageReleaseNotes>-->
     <PackageTags>BizTalk BizTalkFactory pipelines</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile>bin\Release\$(AssemblyName).xml</DocumentationFile>
-    <NoWarn>1701;1702</NoWarn>
-  </PropertyGroup>
-
   <ItemGroup>
+    <None Include="..\..\.build\nuget.png" Pack="true" PackagePath="" />
     <None Include="..\..\.settings\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BizTalk.Server.2020.Build" Version="2.1.22025.37275">
+    <PackageReference Include="BizTalk.Server.2020.Build" Version="2.1.22097.28678">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.3">
+    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
